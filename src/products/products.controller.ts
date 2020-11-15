@@ -31,10 +31,10 @@ export class ProductsController {
 
   @Get(':id')
   @ApiOperation({
-    summary: 'returns a user based on the id',
+    summary: 'returns a product based on the id',
     description: `
     - For control purposes only -
-    This will fetch a user based on theid id
+    This will fetch a product based on theid id
     `,
   })
   @ApiParam({ name: 'id' })
@@ -44,10 +44,10 @@ export class ProductsController {
 
   @Post()
   @ApiOperation({
-    summary: 'creates and returns the user',
+    summary: 'creates and returns the product',
     description: `
     - For control purposes only -
-    This will create the user on the platform and return the user
+    This will create the product on the platform and return the product
     `,
   })
   store(@Body() data: ProductDto): Promise<Product> {
@@ -56,10 +56,10 @@ export class ProductsController {
 
   @Put(':id')
   @ApiOperation({
-    summary: 'updates a user based on the id',
+    summary: 'updates a product based on the id',
     description: `
     - For control purposes only -
-    This will update the user on the platform and return the user
+    This will update the product on the platform and return the product
     `,
   })
   @ApiParam({ name: 'id' })
@@ -69,10 +69,10 @@ export class ProductsController {
 
   @Delete(':id')
   @ApiOperation({
-    summary: 'removes a user based on the id',
+    summary: 'removes a product based on the id',
     description: `
     - For control purposes only -
-    This will remove the user on the platform
+    This will remove the product on the platform
     `,
   })
   @ApiParam({ name: 'id' })
