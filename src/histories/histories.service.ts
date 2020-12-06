@@ -3,6 +3,9 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { History, HistoryDocument } from './schemas/history.schema';
 import { HistoryDto } from './dto/history.dto';
+import { Place } from 'src/places/schemas/place.schema';
+import { Operator } from 'src/operators/schemas/operator.schema';
+import { Product } from 'src/products/schemas/products.schema';
 
 @Injectable()
 export class HistoriesService {
@@ -34,6 +37,10 @@ export class HistoriesService {
   }
 
   async findAll(): Promise<History[]> {
-    return this.historyModel.find().exec();
+    return this.historyModel.find()
+    .populate('place', null, Place)
+    .populate('operator', null, Operator)
+    .populate('product', null, Product)
+    .exec();
   }
 }

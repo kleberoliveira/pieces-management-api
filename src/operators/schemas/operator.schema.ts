@@ -3,7 +3,7 @@ import { Document } from 'mongoose';
 
 export type OperatorDocument = Operator & Document;
 
-@Schema()
+@Schema({ versionKey: false })
 export class Operator {
   @Prop()
   name: string;
