@@ -10,9 +10,6 @@ export class History {
 
   @Prop()
   history: string;
-
-  @Prop()
-  password: string;
 }
 
 export const HistorySchema = SchemaFactory.createForClass(History);

@@ -10,9 +10,6 @@ export class Operator {
 
   @Prop()
   operator: string;
-
-  @Prop()
-  password: string;
 }
 
 export const OperatorSchema = SchemaFactory.createForClass(Operator);

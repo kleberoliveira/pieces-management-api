@@ -10,9 +10,6 @@ export class Place {
 
   @Prop()
   place: string;
-
-  @Prop()
-  password: string;
 }
 
 export const PlaceSchema = SchemaFactory.createForClass(Place);
