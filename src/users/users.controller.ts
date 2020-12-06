@@ -6,13 +6,17 @@ import {
   Param,
   Post,
   Put,
+  UseGuards,
 } from '@nestjs/common';
-import { ApiOperation, ApiParam, ApiTags } from '@nestjs/swagger';
+import { ApiBasicAuth, ApiOperation, ApiParam, ApiTags } from '@nestjs/swagger';
+import { BasicAuthGuard } from 'src/auth/guards/basic-auth.guard';
 import { UserDto } from './dto/user.dto';
 import { User } from './schemas/user.schema';
 import { UsersService } from './users.service';
 
 @ApiTags('Users')
+@ApiBasicAuth()
+@UseGuards(BasicAuthGuard)
 @Controller('users')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}

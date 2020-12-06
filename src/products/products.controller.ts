@@ -6,13 +6,17 @@ import {
   Param,
   Post,
   Put,
+  UseGuards,
 } from '@nestjs/common';
-import { ApiOperation, ApiParam, ApiTags } from '@nestjs/swagger';
+import { ApiBasicAuth, ApiOperation, ApiParam, ApiTags } from '@nestjs/swagger';
 import { ProductDto } from './dto/products.dto';
 import { Product } from './schemas/products.schema';
 import { ProductsService } from './products.service';
+import { BasicAuthGuard } from 'src/auth/guards/basic-auth.guard';
 
 @ApiTags('Products')
+@ApiBasicAuth()
+@UseGuards(BasicAuthGuard)
 @Controller('products')
 export class ProductsController {
   constructor(private readonly productsService: ProductsService) {}

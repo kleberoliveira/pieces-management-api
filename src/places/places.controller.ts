@@ -6,13 +6,17 @@ import {
   Param,
   Post,
   Put,
+  UseGuards,
 } from '@nestjs/common';
-import { ApiOperation, ApiParam, ApiTags } from '@nestjs/swagger';
+import { ApiBasicAuth, ApiOperation, ApiParam, ApiTags } from '@nestjs/swagger';
 import { PlaceDto } from './dto/place.dto';
 import { Place } from './schemas/place.schema';
 import { PlacesService } from './places.service';
+import { BasicAuthGuard } from 'src/auth/guards/basic-auth.guard';
 
 @ApiTags('Places')
+@ApiBasicAuth()
+@UseGuards(BasicAuthGuard)
 @Controller('places')
 export class PlacesController {
   constructor(private readonly placesService: PlacesService) {}

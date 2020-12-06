@@ -9,6 +9,7 @@ async function bootstrap() {
     .setTitle('Pieces Management')
     .setDescription('Pieces Managemnet')
     .setVersion('1.0')
+    .addBasicAuth()
     .build();
   const document = SwaggerModule.createDocument(app, options);
   SwaggerModule.setup('docs', app, document);

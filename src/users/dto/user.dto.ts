@@ -22,7 +22,7 @@ export class UserDto {
   @IsDefined()
   @IsString()
   @IsEmail()
-  readonly user: string;
+  readonly username: string;
 
   @ApiProperty({
     description: "user's password",

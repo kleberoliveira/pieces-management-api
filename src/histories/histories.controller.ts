@@ -6,13 +6,17 @@ import {
   Param,
   Post,
   Put,
+  UseGuards,
 } from '@nestjs/common';
-import { ApiOperation, ApiParam, ApiTags } from '@nestjs/swagger';
+import { ApiBasicAuth, ApiOperation, ApiParam, ApiTags } from '@nestjs/swagger';
 import { HistoryDto } from './dto/history.dto';
 import { History } from './schemas/history.schema';
 import { HistoriesService } from './histories.service';
+import { BasicAuthGuard } from 'src/auth/guards/basic-auth.guard';
 
 @ApiTags('Histories')
+@ApiBasicAuth()
+@UseGuards(BasicAuthGuard)
 @Controller('histories')
 export class HistoriesController {
   constructor(private readonly historiesService: HistoriesService) {}
