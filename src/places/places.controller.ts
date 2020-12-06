@@ -51,7 +51,7 @@ export class PlacesController {
     `,
   })
   store(@Body() data: PlaceDto): Promise<Place> {
-    return this.placesService.create({ data });
+    return this.placesService.create(data);
   }
 
   @Put(':id')

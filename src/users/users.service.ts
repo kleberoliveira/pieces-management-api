@@ -8,9 +8,9 @@ import { UserDto } from './dto/user.dto';
 export class UsersService {
   constructor(@InjectModel(User.name) private userModel: Model<UserDocument>) {}
 
-  async create(createUserDto: Record<string, any>): Promise<User> {
-    const createdUser = new this.userModel(createUserDto);
-    return createdUser.save();
+  async create(createUserDto: UserDto): Promise<User> {
+    const createdUser = this.userModel.create(createUserDto);
+    return await createdUser;
   }
 
   async update(id: string, userDto: UserDto): Promise<boolean> {

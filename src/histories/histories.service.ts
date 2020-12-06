@@ -6,16 +6,21 @@ import { HistoryDto } from './dto/history.dto';
 
 @Injectable()
 export class HistoriesService {
-  constructor(@InjectModel(History.name) private historyModel: Model<HistoryDocument>) {}
+  constructor(
+    @InjectModel(History.name) private historyModel: Model<HistoryDocument>,
+  ) {}
 
-  async create(createHistoryDto: Record<string, any>): Promise<History> {
-    const createdHistory = new this.historyModel(createHistoryDto);
-    return createdHistory.save();
+  async create(createHistoryDto: HistoryDto): Promise<History> {
+    const createdHistory = this.historyModel.create(createHistoryDto);
+    return createdHistory;
   }
 
   async update(id: string, historyDto: HistoryDto): Promise<boolean> {
     const updateHistory: History = historyDto;
-    const updatedHistory = await this.historyModel.findByIdAndUpdate(id, updateHistory);
+    const updatedHistory = await this.historyModel.findByIdAndUpdate(
+      id,
+      updateHistory,
+    );
     return updatedHistory !== null;
   }
 

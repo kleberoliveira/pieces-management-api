@@ -51,7 +51,7 @@ export class HistoriesController {
     `,
   })
   store(@Body() data: HistoryDto): Promise<History> {
-    return this.historiesService.create({ data });
+    return this.historiesService.create(data);
   }
 
   @Put(':id')

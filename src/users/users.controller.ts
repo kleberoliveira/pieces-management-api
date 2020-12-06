@@ -51,7 +51,7 @@ export class UsersController {
     `,
   })
   store(@Body() data: UserDto): Promise<User> {
-    return this.usersService.create({ data });
+    return this.usersService.create(data);
   }
 
   @Put(':id')

@@ -23,5 +23,5 @@ export class ProductDto {
   @ApiProperty({
     description: 'status',
   })
-  readonly status: 'active' | 'desactive';  
+  readonly status: 'active' | 'desactive';
 }

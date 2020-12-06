@@ -51,7 +51,7 @@ export class OperatorsController {
     `,
   })
   store(@Body() data: OperatorDto): Promise<Operator> {
-    return this.operatorsService.create({ data });
+    return this.operatorsService.create(data);
   }
 
   @Put(':id')
@@ -63,7 +63,10 @@ export class OperatorsController {
     `,
   })
   @ApiParam({ name: 'id' })
-  update(@Param() { id }: Record<string, any>, @Body() data: OperatorDto): void {
+  update(
+    @Param() { id }: Record<string, any>,
+    @Body() data: OperatorDto,
+  ): void {
     this.operatorsService.update(id, data);
   }
 

@@ -6,16 +6,21 @@ import { OperatorDto } from './dto/operator.dto';
 
 @Injectable()
 export class OperatorsService {
-  constructor(@InjectModel(Operator.name) private operatorModel: Model<OperatorDocument>) {}
+  constructor(
+    @InjectModel(Operator.name) private operatorModel: Model<OperatorDocument>,
+  ) {}
 
-  async create(createOperatorDto: Record<string, any>): Promise<Operator> {
-    const createdOperator = new this.operatorModel(createOperatorDto);
-    return createdOperator.save();
+  async create(createOperatorDto: OperatorDto): Promise<Operator> {
+    const createdOperator = this.operatorModel.create(createOperatorDto);
+    return createdOperator;
   }
 
   async update(id: string, operatorDto: OperatorDto): Promise<boolean> {
     const updateOperator: Operator = operatorDto;
-    const updatedOperator = await this.operatorModel.findByIdAndUpdate(id, updateOperator);
+    const updatedOperator = await this.operatorModel.findByIdAndUpdate(
+      id,
+      updateOperator,
+    );
     return updatedOperator !== null;
   }
 

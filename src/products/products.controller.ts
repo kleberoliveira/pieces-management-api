@@ -51,7 +51,7 @@ export class ProductsController {
     `,
   })
   store(@Body() data: ProductDto): Promise<Product> {
-    return this.productsService.create({ data });
+    return this.productsService.create(data);
   }
 
   @Put(':id')

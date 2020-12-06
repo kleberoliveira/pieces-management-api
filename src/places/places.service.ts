@@ -6,16 +6,21 @@ import { PlaceDto } from './dto/place.dto';
 
 @Injectable()
 export class PlacesService {
-  constructor(@InjectModel(Place.name) private placeModel: Model<PlaceDocument>) {}
+  constructor(
+    @InjectModel(Place.name) private placeModel: Model<PlaceDocument>,
+  ) {}
 
-  async create(createPlaceDto: Record<string, any>): Promise<Place> {
-    const createdPlace = new this.placeModel(createPlaceDto);
-    return createdPlace.save();
+  async create(createPlaceDto: PlaceDto): Promise<Place> {
+    const createdPlace = this.placeModel.create(createPlaceDto);
+    return createdPlace;
   }
 
   async update(id: string, placeDto: PlaceDto): Promise<boolean> {
     const updatePlace: Place = placeDto;
-    const updatedPlace = await this.placeModel.findByIdAndUpdate(id, updatePlace);
+    const updatedPlace = await this.placeModel.findByIdAndUpdate(
+      id,
+      updatePlace,
+    );
     return updatedPlace !== null;
   }
 

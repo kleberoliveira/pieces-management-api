@@ -6,16 +6,21 @@ import { ProductDto } from './dto/products.dto';
 
 @Injectable()
 export class ProductsService {
-  constructor(@InjectModel(Product.name) private productModel: Model<ProductDocument>) {}
+  constructor(
+    @InjectModel(Product.name) private productModel: Model<ProductDocument>,
+  ) {}
 
-  async create(createProductDto: Record<string, any>): Promise<Product> {
-    const createdProduct = new this.productModel(createProductDto);
-    return createdProduct.save();
+  async create(createProductDto: ProductDto): Promise<Product> {
+    const createdProduct = this.productModel.create(createProductDto);
+    return createdProduct;
   }
 
   async update(id: string, productDto: ProductDto): Promise<boolean> {
     const updateProduct: Product = productDto;
-    const updatedProduct = await this.productModel.findByIdAndUpdate(id, updateProduct);
+    const updatedProduct = await this.productModel.findByIdAndUpdate(
+      id,
+      updateProduct,
+    );
     return updatedProduct !== null;
   }
 

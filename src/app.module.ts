@@ -13,7 +13,7 @@ import { UsersModule } from './users/users.module';
     PlacesModule,
     OperatorsModule,
     HistoriesModule,
-    ProductsModule
+    ProductsModule,
   ],
 })
 export class AppModule {}
