@@ -7,7 +7,7 @@ import { Product } from 'src/products/schemas/products.schema';
 export class HistoryDto {
   @ApiProperty({
     description: "history's date",
-    example: "2020-01-01"
+    example: '2020-01-01',
   })
   @IsDefined()
   @IsDate()
@@ -15,7 +15,7 @@ export class HistoryDto {
 
   @ApiProperty({
     description: "history's description",
-    example: "Feito alguma coisa"
+    example: 'Feito alguma coisa',
   })
   @IsDefined()
   @IsString()
@@ -23,7 +23,7 @@ export class HistoryDto {
 
   @ApiProperty({
     description: 'Place id',
-    example: "5fcd5a4f77cca71023883ca6"
+    example: '5fcd5a4f77cca71023883ca6',
   })
   @IsDefined()
   @IsString()
@@ -31,7 +31,7 @@ export class HistoryDto {
 
   @ApiProperty({
     description: 'Operator id',
-    example: "5fcd5a4f77cca71023883ca6"
+    example: '5fcd5a4f77cca71023883ca6',
   })
   @IsDefined()
   @IsString()
@@ -39,7 +39,7 @@ export class HistoryDto {
 
   @ApiProperty({
     description: 'Product id',
-    example: "5fcd5a4f77cca71023883ca6"
+    example: '5fcd5a4f77cca71023883ca6',
   })
   @IsDefined()
   @IsString()

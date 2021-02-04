@@ -37,10 +37,11 @@ export class HistoriesService {
   }
 
   async findAll(): Promise<History[]> {
-    return this.historyModel.find()
-    .populate('place', null, Place)
-    .populate('operator', null, Operator)
-    .populate('product', null, Product)
-    .exec();
+    return this.historyModel
+      .find()
+      .populate('place', null, Place)
+      .populate('operator', null, Operator)
+      .populate('product', null, Product)
+      .exec();
   }
 }
