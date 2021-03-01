@@ -59,6 +59,20 @@ export class HistoriesService {
     }
   }
 
+  async findOneByProduct(product: Product): Promise<Array<History>> {
+    try {
+      this.logger.debug(`findOne history by product ${product}`);
+      return this.historyModel
+        .find({ product })
+        .populate('place', null, Place)
+        .populate('operator', null, Operator)
+        .populate('product', null, Product)
+        .exec();
+    } catch (error) {
+      this.logger.error(error.message, error);
+    }
+  }
+
   async findAll(): Promise<History[]> {
     try {
       this.logger.debug(`findAll histories`);
