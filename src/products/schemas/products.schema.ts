@@ -6,19 +6,16 @@ export type ProductDocument = Product & Document;
 @Schema({ versionKey: false })
 export class Product {
   @Prop()
-  _id?: string;
+  sap?: string;
 
   @Prop()
-  sap: string;
+  uuid?: string;
 
   @Prop()
-  uuid: string;
+  description?: string;
 
   @Prop()
-  description: string;
-
-  @Prop()
-  status: string;
+  status?: string;
 }
 
 export const ProductSchema = SchemaFactory.createForClass(Product);

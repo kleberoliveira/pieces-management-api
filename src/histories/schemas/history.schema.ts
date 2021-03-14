@@ -21,7 +21,7 @@ export class History {
   operator: Operator;
 
   @Prop({ type: Types.ObjectId, ref: Product })
-  product: Product|string;
+  product: Product;
 }
 
 export const HistorySchema = SchemaFactory.createForClass(History);

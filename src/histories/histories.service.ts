@@ -65,14 +65,14 @@ export class HistoriesService {
     try {
       this.logger.debug(`findOne history by product ${uuid}`);
 
-      const product: Product = await this.productsService.findOneByCode(uuid);
-
-      return this.historyModel
-        .find({ product: product._id })
+      const histories: Array<History> = await this.historyModel
+        .find()
         .populate('place', null, Place)
         .populate('operator', null, Operator)
         .populate('product', null, Product)
         .exec();
+
+      return histories.filter((history) => history.product.uuid === uuid);
     } catch (error) {
       this.logger.error(error.message, error);
     }
