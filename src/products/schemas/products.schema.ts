@@ -6,6 +6,9 @@ export type ProductDocument = Product & Document;
 @Schema({ versionKey: false })
 export class Product {
   @Prop()
+  _id?: string;
+
+  @Prop()
   sap: string;
 
   @Prop()

@@ -56,6 +56,15 @@ export class ProductsService {
     }
   }
 
+  async findOneByCode(uuid: string): Promise<Product> {
+    try {
+      this.logger.debug(`findOneByCode product ${uuid}`);
+      return this.productModel.findOne({ uuid }).exec();
+    } catch (error) {
+      this.logger.error(error.message, error);
+    }
+  }
+
   async findAll(): Promise<Product[]> {
     try {
       this.logger.debug(`findAll products`);

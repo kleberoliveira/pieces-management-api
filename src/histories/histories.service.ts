@@ -6,12 +6,14 @@ import { HistoryDto } from './dto/history.dto';
 import { Place } from 'src/places/schemas/place.schema';
 import { Operator } from 'src/operators/schemas/operator.schema';
 import { Product } from 'src/products/schemas/products.schema';
+import { ProductsService } from 'src/products/products.service';
 
 @Injectable()
 export class HistoriesService {
   private logger: Logger;
   constructor(
     @InjectModel(History.name) private historyModel: Model<HistoryDocument>,
+    private readonly productsService: ProductsService,
   ) {
     this.logger = new Logger(HistoriesService.name, true);
   }
@@ -59,11 +61,14 @@ export class HistoriesService {
     }
   }
 
-  async findOneByProduct(product: Product): Promise<Array<History>> {
+  async findOneByProduct(uuid: string): Promise<Array<History>> {
     try {
-      this.logger.debug(`findOne history by product ${product}`);
+      this.logger.debug(`findOne history by product ${uuid}`);
+
+      const product: Product = await this.productsService.findOneByCode(uuid);
+
       return this.historyModel
-        .find({ product })
+        .find({ product: product._id })
         .populate('place', null, Place)
         .populate('operator', null, Operator)
         .populate('product', null, Product)

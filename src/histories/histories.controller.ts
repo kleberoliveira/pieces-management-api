@@ -51,7 +51,7 @@ export class HistoriesController {
     return this.historiesService.findOneById(id);
   }
 
-  @Get('product/:id')
+  @Get('product/:uuid')
   @ApiOperation({
     summary: 'returns a history based on the product id',
     description: `
@@ -59,9 +59,11 @@ export class HistoriesController {
     This will fetch a history based on product id
     `,
   })
-  @ApiParam({ name: 'id' })
-  showByProduct(@Param() { id }: Record<string, any>): Promise<Array<History>> {
-    return this.historiesService.findOneByProduct(id);
+  @ApiParam({ name: 'uuid' })
+  showByProduct(
+    @Param() { uuid }: Record<string, any>,
+  ): Promise<Array<History>> {
+    return this.historiesService.findOneByProduct(uuid);
   }
 
   @Post()
