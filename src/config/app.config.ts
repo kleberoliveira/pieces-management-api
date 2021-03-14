@@ -5,4 +5,5 @@ export default registerAs('app', () => ({
   description: process.env.APP_DESCRIPTION,
   version: process.env.APP_VERSION,
   port: process.env.APP_PORT,
+  key: process.env.APP_KEY,
 }));

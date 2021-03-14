@@ -8,15 +8,20 @@ import {
   Put,
   UseGuards,
 } from '@nestjs/common';
-import { ApiBasicAuth, ApiOperation, ApiParam, ApiTags } from '@nestjs/swagger';
+import {
+  ApiBearerAuth,
+  ApiOperation,
+  ApiParam,
+  ApiTags,
+} from '@nestjs/swagger';
 import { HistoryDto } from './dto/history.dto';
 import { History } from './schemas/history.schema';
 import { HistoriesService } from './histories.service';
-import { BasicAuthGuard } from 'src/auth/guards/basic-auth.guard';
+import { JwtAuthGuard } from 'src/auth/guards/jwt.guard';
 
 @ApiTags('Histories')
-@ApiBasicAuth()
-@UseGuards(BasicAuthGuard)
+@ApiBearerAuth()
+@UseGuards(JwtAuthGuard)
 @Controller('histories')
 export class HistoriesController {
   constructor(private readonly historiesService: HistoriesService) {}
@@ -44,6 +49,21 @@ export class HistoriesController {
   @ApiParam({ name: 'id' })
   show(@Param() { id }: Record<string, any>): Promise<History> {
     return this.historiesService.findOneById(id);
+  }
+
+  @Get('product/:uuid')
+  @ApiOperation({
+    summary: 'returns a history based on the product id',
+    description: `
+    - For control purposes only -
+    This will fetch a history based on product id
+    `,
+  })
+  @ApiParam({ name: 'uuid' })
+  showByProduct(
+    @Param() { uuid }: Record<string, any>,
+  ): Promise<Array<History>> {
+    return this.historiesService.findOneByProduct(uuid);
   }
 
   @Post()

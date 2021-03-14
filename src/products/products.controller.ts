@@ -8,15 +8,20 @@ import {
   Put,
   UseGuards,
 } from '@nestjs/common';
-import { ApiBasicAuth, ApiOperation, ApiParam, ApiTags } from '@nestjs/swagger';
+import {
+  ApiBearerAuth,
+  ApiOperation,
+  ApiParam,
+  ApiTags,
+} from '@nestjs/swagger';
 import { ProductDto } from './dto/products.dto';
 import { Product } from './schemas/products.schema';
 import { ProductsService } from './products.service';
-import { BasicAuthGuard } from 'src/auth/guards/basic-auth.guard';
+import { JwtAuthGuard } from 'src/auth/guards/jwt.guard';
 
 @ApiTags('Products')
-@ApiBasicAuth()
-@UseGuards(BasicAuthGuard)
+@ApiBearerAuth()
+@UseGuards(JwtAuthGuard)
 @Controller('products')
 export class ProductsController {
   constructor(private readonly productsService: ProductsService) {}

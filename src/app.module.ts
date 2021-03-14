@@ -1,4 +1,5 @@
 import { Module } from '@nestjs/common';
+import { APP_INTERCEPTOR } from '@nestjs/core';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 import { HistoriesModule } from './histories/histories.module';
@@ -7,6 +8,7 @@ import { PlacesModule } from './places/places.module';
 import { ProductsModule } from './products/products.module';
 import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
+import { AuthInterceptor } from './auth/auth.interceptor';
 import validationSchema from './validation/env.schema';
 import * as config from './config';
 
@@ -37,6 +39,12 @@ import * as config from './config';
     HistoriesModule,
     ProductsModule,
     AuthModule,
+  ],
+  providers: [
+    {
+      provide: APP_INTERCEPTOR,
+      useClass: AuthInterceptor,
+    },
   ],
 })
 export class AppModule {}
